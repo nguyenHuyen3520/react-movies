@@ -20,7 +20,7 @@ const Modal = props => {
 export const ModalContent = props => {
     const contentRef = React.useRef()
     const closeModal = () => {
-        contentRef.current.parentNode.classList.remove('actve')
+        contentRef.current.parentNode.classList.remove('active')
         if (props.onClose) props.onClose()
     }
     return (
