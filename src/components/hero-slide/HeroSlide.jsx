@@ -16,7 +16,6 @@ const HeroSlide = () => {
             const params = { page: 1 }
             try {
                 const response = await tmdbApi.getMoviesList(movieType.popular, { params })
-                console.log(response);
                 setMovieItems(response.results.slice(0, 4))
             } catch {
                 console.log('erro');
@@ -62,15 +61,11 @@ const HeroSLideItem = props => {
     const item = props.item
 
     const background = apiConfig.originalImage(item.backdrop_path ? item.backdrop_path : item.poster_path)
-    useEffect(() => {
-        console.log(background);
-    }, [])
 
     const setModalActive = async () => {
         const modal = document.querySelector(`#modal_${item.id}`);
 
         const videos = await tmdbApi.getVideos(category.movie, item.id)
-        console.log("video", videos);
         if (videos.results.length > 0) {
             const videoSrc = 'https://www.youtube/embed/' + videos.results[0].key;
             modal.querySelector('.modal__content > iframe').setAttribute('src', videoSrc)
